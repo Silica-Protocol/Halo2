@@ -880,7 +880,7 @@ mod tests {
                 .hash(message);
 
             let k = 6;
-            let circuit = MyHashCircuit::<OrchardNullifier, 3, 2, 2> {
+            let circuit: MyHashCircuit<OrchardNullifier, 3, 2, 2> = MyHashCircuit::<OrchardNullifier, 3, 2, 2> {
                 message: Value::known(message),
                 output: Value::known(output),
                 _spec: PhantomData,
