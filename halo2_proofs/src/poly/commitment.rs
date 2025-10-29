@@ -160,8 +160,8 @@ impl<C: CurveAffine> Params<C> {
         self.g.clone()
     }
 
-    /// Get the circuit size parameter k
-    pub fn k(&self) -> u32 {
+    /// Getter for k generators
+    pub fn get_k(&self) -> u32 {
         self.k
     }
 
