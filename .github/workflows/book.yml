@@ -65,7 +65,7 @@ jobs:
           publish_dir: ./book/book/html
 
       - name: Upload PDF File to Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v6
         with:
           name: The_halo2_Book
           path: book/book/pdf-outline/*.pdf
