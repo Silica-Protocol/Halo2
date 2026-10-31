@@ -10,6 +10,7 @@ permissions:
 
 jobs:
   test:
+    if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
     name: Test on ${{ matrix.os }}${{ matrix.name_suffix }}
     runs-on: [self-hosted, '${{ matrix.os }}']
     strategy:
@@ -45,6 +46,7 @@ jobs:
         run: git diff --exit-code
 
   test-32-bit:
+    if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
     name: Test on i686-unknown-linux-gnu${{ matrix.name_suffix }}
     runs-on: [self-hosted, Linux]
     strategy:
@@ -80,6 +82,7 @@ jobs:
           $FEATURE_FLAGS
 
   build:
+    if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
     name: Build target ${{ matrix.target }}
     runs-on: [self-hosted, Linux]
     strategy:
@@ -108,6 +111,7 @@ jobs:
           --target ${{ matrix.target }}
 
   bitrot:
+    if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
     name: Bitrot check
     runs-on: [self-hosted, Linux]
     steps:
@@ -131,6 +135,7 @@ jobs:
         run: cargo build --benches --examples --all-features
 
   book:
+    if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
     name: Book tests
     runs-on: [self-hosted, Linux]
     steps:
@@ -157,6 +162,7 @@ jobs:
         run: mdbook test -L target/debug/deps book/
 
   codecov:
+    if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
     name: Code coverage
     runs-on: [self-hosted, Linux]
     container:
@@ -184,6 +190,7 @@ jobs:
         uses: codecov/codecov-action@e79a6962e0d4c0c17b229090214935d2e33f8354 # v6.0.1
 
   doc-links:
+    if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
     name: Intra-doc links
     runs-on: [self-hosted, Linux]
     steps:
@@ -199,6 +206,7 @@ jobs:
         run: cargo doc --all --all-features --document-private-items
 
   fmt:
+    if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
     name: Rustfmt
     timeout-minutes: 30
     runs-on: [self-hosted, Linux]
