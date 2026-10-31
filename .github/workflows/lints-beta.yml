@@ -8,7 +8,7 @@ jobs:
   clippy-beta:
     name: Clippy (beta)
     timeout-minutes: 30
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, Linux]
     continue-on-error: true
     permissions:
       contents: read # check out the (private) repository
